@@ -8,7 +8,7 @@ import TodoList from './TodoList';
 
 
 export default function TodoForm() {
-    const { dispatch, todo, todos } = useTodo()
+    const { dispatch, todo } = useTodo()
     const [todoContent, setTodoContent] = useState("")
 
     const handleSubmit = (e) => {

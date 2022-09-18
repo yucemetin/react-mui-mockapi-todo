@@ -59,7 +59,7 @@ export default function UserInfo() {
                     <Button className='submit-button' color='warning' variant="contained" type='submit'>Save</Button>
                 </form>
                 <div className='image'>
-                    <img src={imageUrl || "./icon.svg"} />
+                    <img src={imageUrl || "./icon.svg"} alt="" />
                 </div>
             </div>
         </div>
