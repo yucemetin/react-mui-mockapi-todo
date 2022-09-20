@@ -1,22 +1,24 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { useTodo } from '../context/TodoContext'
 
-export default function TodoList() {
+function TodoList() {
 
-    //const { todos } = useTodo()
+    const { todos } = useTodo()
 
     return (
         <div>
+            {todos.map(todo => {
+                return (
+                    <div key={todo.id}>
+                        <p>{todo.content}</p>
+                        <hr />
+                    </div>
 
+                )
+            })}
 
         </div>
     )
 }
 
-/*
-{JSON.stringify(todos.then(data => {
-                data.map(todo => {
-                    tTodos = [...JSON.stringify(todo)]
-                })
-            }))}
-*/
+export default memo(TodoList)

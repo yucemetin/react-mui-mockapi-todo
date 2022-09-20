@@ -1,39 +1,33 @@
-import { createContext, useContext, useEffect, useReducer, useState } from "react";
+import { createContext, useContext, useEffect, useReducer, memo } from "react";
 import todoReducer from "../reducer/TodoReducer"
 
 const Context = createContext()
 
 const Provider = ({ children }) => {
-
-    const getDatas = () => {
-        return fetch('https://631290d8b466aa9b038bad58.mockapi.io/todos')
-            .then(response => response.json())
-            .then(data => {
-                return data
-            })
-    }
+    useEffect(() => {
+        console.log("effect")
+        dispatch({
+            type: "GET_TODOS"
+        })
+    }, [])
 
     const [state, dispatch] = useReducer(todoReducer, {
-        todos: getDatas(),
+        todos: [],
         todo: {
-            id: Math.floor(Math.random() * 516542652465246),
-            content: "",
+            id: 0,
+            content: "xx",
             isCompleted: false
         }
     })
 
     useEffect(() => {
-        fetch('https://631290d8b466aa9b038bad58.mockapi.io/todos', {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(state.todos)
+        console.log("effect2")
+        dispatch({
+            type: "GET_TODOS"
+        })
+    }, [state.todo])
 
-        }).then(resp => console.log(resp.ok))
-    }, [state.todos])
-
+    console.log("contexts")
 
     const data = {
         ...state,
@@ -49,4 +43,4 @@ const Provider = ({ children }) => {
 
 export const useTodo = () => useContext(Context)
 
-export default Provider
+export default memo(Provider)

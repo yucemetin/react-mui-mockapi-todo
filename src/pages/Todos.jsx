@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import UserNavbar from '../components/UserNavbar'
 import TodoForm from "../components/TodoForm"
+import TodoList from '../components/TodoList';
 
 export default function Todos() {
 
@@ -11,6 +12,7 @@ export default function Todos() {
       <UserNavbar setDarkMode={setDarkMode} darkMode={darkMode} />
       <h1>todos</h1>
       <TodoForm />
+      <TodoList />
     </ div >
   )
 }
